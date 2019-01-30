@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { getWeatherByCityName } from './api'
 
 class App extends Component {
+
+  getWeather() {
+    getWeatherByCityName('dublin')
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <i class="wi wi-owm-800"></i>
+        <button onClick={this.getWeather}>get the weather</button>
       </div>
     );
   }
