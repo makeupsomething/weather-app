@@ -31,7 +31,7 @@ jest.mock("../api", () => {
             ]
           },
           {
-            dt_txt: "2019-02-11 18:00:00",
+            dt_txt: "2019-02-12 15:00:00",
             main: {
               grnd_level: 1030.57,
               humidity: 100,
