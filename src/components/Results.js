@@ -47,17 +47,17 @@ class Results extends React.Component {
 
   getWeather = city => {
     getWeatherByCityName(city)
-    .then(weather => {
-      const days = separateByDay(weather.list);
-      this.setState({
-        weatherDays: days,
-        city: weather.city,
-        country: weather.country
+      .then(weather => {
+        const days = separateByDay(weather.list);
+        this.setState({
+          weatherDays: days,
+          city: weather.city,
+          country: weather.country
+        });
+      })
+      .catch(() => {
+        navigate(`/404`);
       });
-    })
-    .catch(() => {
-      navigate(`/404`);
-    })
   };
 
   updateSelectedDay = newDay => {
@@ -70,11 +70,11 @@ class Results extends React.Component {
     return (
       <React.Fragment>
         <SearchBar />
-        {city ? (<MainDetails
-              currentDay={currentDay}
-              city={city}
-              country={country}
-        />) : <span>no city</span>}
+        {city ? (
+          <MainDetails currentDay={currentDay} city={city} country={country} />
+        ) : (
+          <span>no city</span>
+        )}
         {weatherDays.length > 0 ? (
           <React.Fragment>
             <FiveDayChart weatherData={weatherDays} currentDay={currentDay} />
@@ -95,4 +95,4 @@ class Results extends React.Component {
   }
 }
 
-export default Results
+export default Results;

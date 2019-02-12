@@ -7,14 +7,14 @@ export function getWeatherByCityName(city) {
     .then(function(response) {
       return response.json();
     })
-    .then((myJson) => {
-      const {cod} = myJson
-      if(cod === "200") {
+    .then(myJson => {
+      const { cod } = myJson;
+      if (cod === "200") {
         return myJson;
       } else {
-        return Promise.reject(cod)
+        return Promise.reject(cod);
       }
-    })
+    });
 }
 
 export function getCurrentWeatherByCityName(city) {

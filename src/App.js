@@ -8,11 +8,11 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-          <Router>
-            <Home path="/" />
-            <Results path="/results/:city" />
-            <NotFound path="/404" />
-          </Router>
+        <Router>
+          <Home path="/" />
+          <Results path="/results/:city" />
+          <NotFound path="/404" />
+        </Router>
       </Fragment>
     );
   }
