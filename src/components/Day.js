@@ -45,7 +45,7 @@ const DayContainer = styled.li`
   .min {
     color: #7892e5;
   }
-  
+
   .description {
     font-size: 1rem;
   }
@@ -64,7 +64,8 @@ class Day extends React.Component {
         <span className="item">{date.format("dddd")}</span>
         <span className="item description">{date.format("DD/MM/YYYY")}</span>
         <span>
-          <span className="max item">{Math.round(maxMinTemps.max)}&#8451;</span>/
+          <span className="max item">{Math.round(maxMinTemps.max)}&#8451;</span>
+          /
           <span className="min item">{Math.round(maxMinTemps.min)}&#8451;</span>
         </span>
         <i

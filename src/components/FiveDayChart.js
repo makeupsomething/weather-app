@@ -24,7 +24,7 @@ class FiveDayChart extends React.Component {
   }
 
   formatLabel(label) {
-    return `${Math.round(label)}\u2103`
+    return `${Math.round(label)}\u2103`;
   }
 
   render() {
@@ -38,8 +38,17 @@ class FiveDayChart extends React.Component {
             baseValue="dataMin"
           >
             <XAxis dataKey="dt_txt" tickFormatter={this.formatTick} />
-            <Area dataKey="main.temp" stroke="#757575" fillOpacity={0.5} fill="#757575">
-              <LabelList dataKey="main.temp" position="top" formatter={this.formatLabel} />
+            <Area
+              dataKey="main.temp"
+              stroke="#757575"
+              fillOpacity={0.5}
+              fill="#757575"
+            >
+              <LabelList
+                dataKey="main.temp"
+                position="top"
+                formatter={this.formatLabel}
+              />
             </Area>
           </AreaChart>
         </ResponsiveContainer>

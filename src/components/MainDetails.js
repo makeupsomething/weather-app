@@ -40,7 +40,6 @@ const DetailsContainer = styled.div`
     i {
       display: none;
     }
-    
   }
 `;
 
@@ -49,7 +48,7 @@ const HeaderSection = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-`
+`;
 
 class MainDetails extends React.Component {
   state = {
@@ -79,13 +78,15 @@ class MainDetails extends React.Component {
   render() {
     const { city } = this.props;
     const { currentWeather } = this.state;
-    const date = dayjs() ;
+    const date = dayjs();
     return (
       <DetailsContainer>
         {currentWeather ? (
           <React.Fragment>
             <HeaderSection>
-              <span>{city.name}, {city.country}</span>
+              <span>
+                {city.name}, {city.country}
+              </span>
               <span className="date">{date.format("dddd")}</span>
               <span className="date">{date.format("DD/MM/YYYY")}</span>
             </HeaderSection>
@@ -93,7 +94,9 @@ class MainDetails extends React.Component {
               <span>{Math.round(currentWeather.main.temp)}&#8451;</span>
               <span className="location">
                 {currentWeather.weather[0].description}
-                <i className={`date wi wi-owm-${currentWeather.weather[0].id}`} />
+                <i
+                  className={`date wi wi-owm-${currentWeather.weather[0].id}`}
+                />
               </span>
             </HeaderSection>
           </React.Fragment>
