@@ -19,8 +19,8 @@ const SearchBarButton = styled.button`
   background-color: #edeff1;
   border: none;
   margin: 12px;
-  padding: 12px;
-  font-size: 2.5rem;
+  font-size: 2rem;
+  cursor: pointer;
 `;
 
 const ErrorMessage = styled.span`
