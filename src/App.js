@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import { getWeatherByCityName } from './api'
+import React, { Component, Fragment } from "react";
+import { Router } from "@reach/router";
+import Home from "./components/Home";
+import Results from "./components/Results";
+import NotFound from "./components/NotFound";
 
 class App extends Component {
-
-  getWeather() {
-    getWeatherByCityName('dublin')
-  }
-
   render() {
     return (
-      <div className="App">
-        <i class="wi wi-owm-800"></i>
-        <button onClick={this.getWeather}>get the weather</button>
-      </div>
+      <Fragment>
+        <Router>
+          <Home path="/" />
+          <Results path="/results/:city" />
+          <NotFound path="/404" />
+        </Router>
+      </Fragment>
     );
   }
 }
