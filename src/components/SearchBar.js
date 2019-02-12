@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
 import { navigate } from "@reach/router";
-import { separateByDay } from "../utils";
-import { getWeatherByCityName } from "../api";
-import { ninvoke } from "q";
 
 const SearchBarForm = styled.form`
   font-size: 2rem;
