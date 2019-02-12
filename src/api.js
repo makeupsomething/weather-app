@@ -7,10 +7,10 @@ export function getWeatherByCityName(city) {
     .then(function(response) {
       return response.json();
     })
-    .then(myJson => {
-      const { cod } = myJson;
+    .then(weather => {
+      const { cod } = weather;
       if (cod === "200") {
-        return myJson;
+        return weather;
       } else {
         return Promise.reject(cod);
       }
@@ -23,7 +23,7 @@ export function getCurrentWeatherByCityName(city) {
     .then(function(response) {
       return response.json();
     })
-    .then(function(myJson) {
-      return myJson;
+    .then(weather => {
+      return weather;
     });
 }

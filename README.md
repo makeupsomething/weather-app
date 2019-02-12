@@ -5,16 +5,19 @@ A small weather applicatiom built with react using the [Open Weather Map API](ht
 ## How to run
 
 To install packages
+
 ```
 yarn install
 ```
 
 To start the app
+
 ```
 yarn start
 ```
 
 To run the tests
+
 ```
 yarn test
 ```

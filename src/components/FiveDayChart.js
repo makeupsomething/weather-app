@@ -18,6 +18,9 @@ const ChartContainer = styled.div`
   margin: auto;
 `;
 
+// Shows a chart of the tempature for a day
+// Uing a library called recharts for the chart
+
 class FiveDayChart extends React.Component {
   formatTick(tickItem) {
     return dayjs(tickItem).format("hh:00");
