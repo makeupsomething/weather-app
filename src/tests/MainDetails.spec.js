@@ -28,12 +28,16 @@ jest.mock("../api", () => {
 });
 
 test("render something", async () => {
-  const { getByText, rerender, debug } = render(<MainDetails city={{
-    country: "JP",
-    name: "Tokyo"
-  }} />);
+  const { getByText, rerender, debug } = render(
+    <MainDetails
+      city={{
+        country: "JP",
+        name: "Tokyo"
+      }}
+    />
+  );
   expect(mockGetCurrentWeatherByCityName).toHaveBeenCalledTimes(1);
   await wait(() => getByText(/tokyo/i));
-  getByText(/tokyo/i)
-  getByText(/broken clouds/i)
+  getByText(/tokyo/i);
+  getByText(/broken clouds/i);
 });

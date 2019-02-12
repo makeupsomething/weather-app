@@ -23,28 +23,28 @@ const SearchBarButton = styled.button`
   margin: 12px;
   padding: 12px;
   font-size: 2.5rem;
-`
+`;
 
 const ErrorMessage = styled.span`
   color: red;
   font-size: 1.5rem;
-`
+`;
 
 class SearchBar extends React.Component {
   state = {
     location: "",
     isSaving: false,
-    error: false,
+    error: false
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    const {city} = event.target.elements
-    if(city.value) {
-      this.setState({isSaving: true})
+    const { city } = event.target.elements;
+    if (city.value) {
+      this.setState({ isSaving: true });
       navigate(`/results/${city.value}`);
     } else {
-      this.setState({error: "City cannot be empty"})
+      this.setState({ error: "City cannot be empty" });
     }
   };
 
@@ -55,7 +55,7 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    const {error} = this.state
+    const { error } = this.state;
 
     return (
       <React.Fragment>

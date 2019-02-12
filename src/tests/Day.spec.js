@@ -5,32 +5,35 @@ import Day from "../components/Day";
 const mockUpdateCurrentDay = jest.fn(() => {});
 
 test("render something", async () => {
-    const dayT = [{
-        dt_txt: "2019-02-12 15:00:00",
-        main: {
-          grnd_level: 1030.57,
-          humidity: 100,
-          pressure: 1030.57,
-          sea_level: 1034.55,
-          temp: 0.77,
-          temp_kf: -0.42,
-          temp_max: 1.19,
-          temp_min: 0.77
-        },
-        weather: [
-          {
-            description: "light rain",
-            icon: "10n",
-            id: 500,
-            main: "Rain"
-          }
-        ]
-    }]
+  const dayT = [
+    {
+      dt_txt: "2019-02-12 15:00:00",
+      main: {
+        grnd_level: 1030.57,
+        humidity: 100,
+        pressure: 1030.57,
+        sea_level: 1034.55,
+        temp: 0.77,
+        temp_kf: -0.42,
+        temp_max: 1.19,
+        temp_min: 0.77
+      },
+      weather: [
+        {
+          description: "light rain",
+          icon: "10n",
+          id: 500,
+          main: "Rain"
+        }
+      ]
+    }
+  ];
 
-    const { getByText, rerender, debug, container } = render(<Day day={dayT} currentDay={1} updateSelectedDay={mockUpdateCurrentDay} />);
-    const card = getByText(/tuesday/i)
-    fireEvent.click(card)
-    await wait(() => expect(mockUpdateCurrentDay).toHaveBeenCalledTimes(1))
-    expect(mockUpdateCurrentDay).toHaveBeenCalledWith(2)
-  });
-  
+  const { getByText, rerender, debug, container } = render(
+    <Day day={dayT} currentDay={1} updateSelectedDay={mockUpdateCurrentDay} />
+  );
+  const card = getByText(/tuesday/i);
+  fireEvent.click(card);
+  await wait(() => expect(mockUpdateCurrentDay).toHaveBeenCalledTimes(1));
+  expect(mockUpdateCurrentDay).toHaveBeenCalledWith(2);
+});
