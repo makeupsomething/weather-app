@@ -11,66 +11,64 @@ jest.mock("@reach/router", () => {
   };
 });
 
-
 jest.mock("../api", () => {
   return {
-    getWeatherByCityName: jest.fn((city) => {
-        if(city !== 'tokyo') {
-          return Promise.reject('404')
-        }
-        return Promise.resolve({
-          list: [
-            {
-              dt_txt: "2019-02-11 15:00:00",
-              main: {
-                grnd_level: 1030.57,
-                humidity: 100,
-                pressure: 1030.57,
-                sea_level: 1034.55,
-                temp: 0.77,
-                temp_kf: -0.42,
-                temp_max: 1.19,
-                temp_min: 0.77
-              },
-              weather: [
-                {
-                  description: "light rain",
-                  icon: "10n",
-                  id: 500,
-                  main: "Rain"
-                }
-              ]
-            },
-            {
-              dt_txt: "2019-02-12 15:00:00",
-              main: {
-                grnd_level: 1030.57,
-                humidity: 100,
-                pressure: 1030.57,
-                sea_level: 1034.55,
-                temp: 0.77,
-                temp_kf: -0.42,
-                temp_max: 1.19,
-                temp_min: 0.77
-              },
-              weather: [
-                {
-                  description: "light rain",
-                  icon: "10n",
-                  id: 500,
-                  main: "Rain"
-                }
-              ]
-            }
-          ],
-          city: {
-            country: "JP",
-            name: "Tokyo"
-          }
-        })
+    getWeatherByCityName: jest.fn(city => {
+      if (city !== "tokyo") {
+        return Promise.reject("404");
       }
-    ),
-    getCurrentWeatherByCityName: jest.fn((city) => 
+      return Promise.resolve({
+        list: [
+          {
+            dt_txt: "2019-02-11 15:00:00",
+            main: {
+              grnd_level: 1030.57,
+              humidity: 100,
+              pressure: 1030.57,
+              sea_level: 1034.55,
+              temp: 0.77,
+              temp_kf: -0.42,
+              temp_max: 1.19,
+              temp_min: 0.77
+            },
+            weather: [
+              {
+                description: "light rain",
+                icon: "10n",
+                id: 500,
+                main: "Rain"
+              }
+            ]
+          },
+          {
+            dt_txt: "2019-02-12 15:00:00",
+            main: {
+              grnd_level: 1030.57,
+              humidity: 100,
+              pressure: 1030.57,
+              sea_level: 1034.55,
+              temp: 0.77,
+              temp_kf: -0.42,
+              temp_max: 1.19,
+              temp_min: 0.77
+            },
+            weather: [
+              {
+                description: "light rain",
+                icon: "10n",
+                id: 500,
+                main: "Rain"
+              }
+            ]
+          }
+        ],
+        city: {
+          country: "JP",
+          name: "Tokyo"
+        }
+      });
+    }),
+    getCurrentWeatherByCityName: jest.fn(city =>
       Promise.resolve({
         main: {
           humidity: 100,
@@ -88,17 +86,17 @@ jest.mock("../api", () => {
           }
         ]
       })
-    ),
+    )
   };
 });
 
 afterEach(() => {
-  mockGetWeatherByCityName.mockClear()
-  mockGetCurrentWeatherByCityName.mockClear()
-})
+  mockGetWeatherByCityName.mockClear();
+  mockGetCurrentWeatherByCityName.mockClear();
+});
 
 test("render results for tokyo", async () => {
-  const { getByText, rerender, debug } = render(<Results city="tokyo" />);
+  const { getByText } = render(<Results city="tokyo" />);
   expect(mockGetWeatherByCityName).toHaveBeenCalledTimes(1);
   await wait(() => getByText(/tokyo/i));
   expect(mockGetCurrentWeatherByCityName).toHaveBeenCalledTimes(1);
@@ -107,7 +105,7 @@ test("render results for tokyo", async () => {
 });
 
 test("render results for tokyyo", async () => {
-  const { getByText, rerender, debug } = render(<Results city="tokyyo" />);
+  render(<Results city="tokyyo" />);
   expect(mockGetWeatherByCityName).toHaveBeenCalledTimes(1);
   await wait(() => expect(mockNavigate).toHaveBeenCalledTimes(1));
   expect(mockNavigate).toHaveBeenCalledWith("/404");

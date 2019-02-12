@@ -4,8 +4,8 @@ import Day from "../components/Day";
 
 const mockUpdateCurrentDay = jest.fn(() => {});
 
-test("render something", async () => {
-  const dayT = [
+test("render a day card component", async () => {
+  const day = [
     {
       dt_txt: "2019-02-12 15:00:00",
       main: {
@@ -29,8 +29,8 @@ test("render something", async () => {
     }
   ];
 
-  const { getByText, rerender, debug, container } = render(
-    <Day day={dayT} currentDay={1} updateSelectedDay={mockUpdateCurrentDay} />
+  const { getByText } = render(
+    <Day day={day} currentDay={1} updateSelectedDay={mockUpdateCurrentDay} />
   );
   const card = getByText(/tuesday/i);
   fireEvent.click(card);

@@ -10,16 +10,16 @@ jest.mock("@reach/router", () => {
   };
 });
 
-test("cannot submit a empty input", async () => {
-  const { getByText, getByLabelText, rerender, debug } = render(<SearchBar />);
+test("try to submit a empty input", async () => {
+  const { getByText, getByLabelText } = render(<SearchBar />);
   getByLabelText(/Check the weather in:/i);
   const submitButton = getByText(/submit/i);
   fireEvent.click(submitButton);
   expect(getByText(/city cannot be empty/i)).toBeInTheDocument();
 });
 
-test("submit input", async () => {
-  const { getByText, getByLabelText, rerender, debug } = render(<SearchBar />);
+test("submit a valid input", async () => {
+  const { getByText, getByLabelText } = render(<SearchBar />);
   getByLabelText(/Check the weather in:/i).value = "dublin";
   const submitButton = getByText(/submit/i);
   fireEvent.click(submitButton);

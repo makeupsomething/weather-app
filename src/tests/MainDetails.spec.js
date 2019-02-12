@@ -27,8 +27,8 @@ jest.mock("../api", () => {
   };
 });
 
-test("render something", async () => {
-  const { getByText, rerender, debug } = render(
+test("render the main details card", async () => {
+  const { getByText } = render(
     <MainDetails
       city={{
         country: "JP",
