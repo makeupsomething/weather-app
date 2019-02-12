@@ -38,11 +38,15 @@ In an effort to keep things more simple I intended to avoid newer react features
 
 The icons and weather description in the cards are not super accurate. I take the middle value for each day forecast and display that. So it is not always representative of what that days weather will be.
 
+I just have a basic 404 page that I redirect to for any errors or route mismatches.
+
 ## If Only I had more time
 
 I should have used react context from the start for sending state to children. I think right now it is at the limit of maintainability for me. If I used react context the structure would be much more simple but I did not have have enough time to refactor this into the app.
 
 If I had more time I would have liked for the home page to get the weather at the users location. I began this this process in [this branch](https://github.com/makeupsomething/weather-app/tree/feature/get-weather-from-coords) but was not able to fully implement it. I was planning to use the browsers build in geolocation API and get the users latitude and longitude from that.
+
+I would have liked to add some nice transitions for components when the results are loading.
 
 I would have also liked to add more charts to show the rain and wind forecasts.
 
