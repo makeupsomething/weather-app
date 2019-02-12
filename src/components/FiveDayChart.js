@@ -23,6 +23,10 @@ class FiveDayChart extends React.Component {
     return dayjs(tickItem).format("hh:00");
   }
 
+  formatLabel(label) {
+    return `${Math.round(label)}\u2103`
+  }
+
   render() {
     const { weatherData, currentDay } = this.props;
     return (
@@ -34,8 +38,8 @@ class FiveDayChart extends React.Component {
             baseValue="dataMin"
           >
             <XAxis dataKey="dt_txt" tickFormatter={this.formatTick} />
-            <Area dataKey="main.temp" fill="purple">
-              <LabelList dataKey="main.temp" position="top" />
+            <Area dataKey="main.temp" stroke="#f3e323" fillOpacity={0.5} fill="#f3e323">
+              <LabelList dataKey="main.temp" position="top" formatter={this.formatLabel} />
             </Area>
           </AreaChart>
         </ResponsiveContainer>
