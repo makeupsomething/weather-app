@@ -43,7 +43,7 @@ const DetailsContainer = styled.div`
   }
 `;
 
-const DetailsContainer = styled.div`
+const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -85,14 +85,14 @@ class MainDetails extends React.Component {
       <DetailsContainer>
         {currentWeather ? (
           <React.Fragment>
-            <DetailsContainer>
+            <InnerContainer>
               <span>
                 {city.name}, {city.country}
               </span>
               <span className="date">{date.format("dddd")}</span>
               <span className="date">{date.format("DD/MM/YYYY")}</span>
-            </DetailsContainer>
-            <DetailsContainer>
+            </InnerContainer>
+            <InnerContainer>
               <span>{Math.round(currentWeather.main.temp)}&#8451;</span>
               <span className="location">
                 {currentWeather.weather[0].description}
@@ -100,7 +100,7 @@ class MainDetails extends React.Component {
                   className={`date wi wi-owm-${currentWeather.weather[0].id}`}
                 />
               </span>
-            </DetailsContainer>
+            </InnerContainer>
           </React.Fragment>
         ) : null}
       </DetailsContainer>
