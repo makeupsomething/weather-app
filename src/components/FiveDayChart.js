@@ -12,7 +12,7 @@ import {
 const ChartContainer = styled.div`
   width: 100%;
   height: 250px;
-  background-color: #fafdf4;
+  background-color: #edeff1;
   box-shadow: 1px 1px 1px 0px #5a5a5a94;
   border-radius: 12px;
   margin: auto;
@@ -21,6 +21,10 @@ const ChartContainer = styled.div`
 class FiveDayChart extends React.Component {
   formatTick(tickItem) {
     return dayjs(tickItem).format("hh:00");
+  }
+
+  formatLabel(label) {
+    return `${Math.round(label)}\u2103`
   }
 
   render() {
@@ -34,8 +38,8 @@ class FiveDayChart extends React.Component {
             baseValue="dataMin"
           >
             <XAxis dataKey="dt_txt" tickFormatter={this.formatTick} />
-            <Area dataKey="main.temp" fill="purple">
-              <LabelList dataKey="main.temp" position="top" />
+            <Area dataKey="main.temp" stroke="#757575" fillOpacity={0.5} fill="#757575">
+              <LabelList dataKey="main.temp" position="top" formatter={this.formatLabel} />
             </Area>
           </AreaChart>
         </ResponsiveContainer>

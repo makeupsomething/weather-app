@@ -5,8 +5,8 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif; */
   font-family: Helvetica Neue LT W05_85 Heavy;
-  background-color: gainsboro;
-  color: darkblue;
+  background-color: #272a2a;
+  color: #000000;
   margin: 12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
