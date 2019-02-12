@@ -38,7 +38,7 @@ class FiveDayChart extends React.Component {
             baseValue="dataMin"
           >
             <XAxis dataKey="dt_txt" tickFormatter={this.formatTick} />
-            <Area dataKey="main.temp" stroke="#f3e323" fillOpacity={0.5} fill="#f3e323">
+            <Area dataKey="main.temp" stroke="#757575" fillOpacity={0.5} fill="#757575">
               <LabelList dataKey="main.temp" position="top" formatter={this.formatLabel} />
             </Area>
           </AreaChart>
