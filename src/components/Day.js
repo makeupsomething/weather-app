@@ -24,19 +24,17 @@ const DayContainer = styled.li`
   }
 
   @media (max-width: 850px) {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-
-    .item {
-      width: 25%;
-    }
+    width: 100%;
+    /* flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start; */
   }
 
   .item {
     width: 100%;
     @media (max-width: 850px) {
-      width: 25%;
+      width: 50%;
     }
   }
 
