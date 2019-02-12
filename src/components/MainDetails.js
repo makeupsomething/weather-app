@@ -43,12 +43,14 @@ const DetailsContainer = styled.div`
   }
 `;
 
-const HeaderSection = styled.div`
+const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 `;
+
+// Main details is the large compoennt sshowing todays forecast for the city
 
 class MainDetails extends React.Component {
   state = {
@@ -83,14 +85,14 @@ class MainDetails extends React.Component {
       <DetailsContainer>
         {currentWeather ? (
           <React.Fragment>
-            <HeaderSection>
+            <DetailsContainer>
               <span>
                 {city.name}, {city.country}
               </span>
               <span className="date">{date.format("dddd")}</span>
               <span className="date">{date.format("DD/MM/YYYY")}</span>
-            </HeaderSection>
-            <HeaderSection>
+            </DetailsContainer>
+            <DetailsContainer>
               <span>{Math.round(currentWeather.main.temp)}&#8451;</span>
               <span className="location">
                 {currentWeather.weather[0].description}
@@ -98,7 +100,7 @@ class MainDetails extends React.Component {
                   className={`date wi wi-owm-${currentWeather.weather[0].id}`}
                 />
               </span>
-            </HeaderSection>
+            </DetailsContainer>
           </React.Fragment>
         ) : null}
       </DetailsContainer>
