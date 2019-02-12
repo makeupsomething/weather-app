@@ -9,6 +9,7 @@ import { getWeatherByCityName } from "../api";
 import { separateByDay } from "../utils";
 import { navigate } from "@reach/router";
 
+//styled-components
 const DayCards = styled.ul`
   display: flex;
   border: 0;
@@ -21,6 +22,10 @@ const DayCards = styled.ul`
   }
 `;
 
+// Results class
+// Contains all the component for the /results route
+// On mount and update get the 5 day weather forcast for the city
+// Redirect to 404 if the api returns an error
 class Results extends React.Component {
   state = {
     weatherDays: [],

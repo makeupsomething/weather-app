@@ -51,6 +51,9 @@ const DayContainer = styled.li`
   }
 `;
 
+// The card components
+// Show the day, date and higl/low values for each day
+// Clicking anywhere on the card triggers the chart to update with the tempature values for the selected day
 class Day extends React.Component {
   render() {
     const { day, currentDay, updateSelectedDay } = this.props;

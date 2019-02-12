@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { navigate } from "@reach/router";
 
+//styled-components
 const SearchBarForm = styled.form`
   font-size: 2rem;
   color: #edeff1;
@@ -28,6 +29,8 @@ const ErrorMessage = styled.span`
   font-size: 1.5rem;
 `;
 
+// Search bar
+// Take the users input and redirect to correct url if not empty
 class SearchBar extends React.Component {
   state = {
     location: "",

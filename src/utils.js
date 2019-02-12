@@ -1,3 +1,4 @@
+// Take the data provided by the api and split into separate arrays by date
 export function separateByDay(list) {
   return list
     .reduce((acc, obj) => {
@@ -12,6 +13,7 @@ export function separateByDay(list) {
     .filter(day => day !== null);
 }
 
+// Go though all the forecast objects for a day and get the highest and lowest tempatures
 export function getDailyMaxAndMin(tempatures) {
   let max = tempatures[0].main.temp_max;
   let min = tempatures[0].main.temp_min;
