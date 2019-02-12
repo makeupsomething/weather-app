@@ -12,7 +12,7 @@ import {
 const ChartContainer = styled.div`
   width: 100%;
   height: 250px;
-  background-color: #fafdf4;
+  background-color: #edeff1;
   box-shadow: 1px 1px 1px 0px #5a5a5a94;
   border-radius: 12px;
   margin: auto;

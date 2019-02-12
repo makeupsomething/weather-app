@@ -4,17 +4,19 @@ import { navigate } from "@reach/router";
 
 const SearchBarForm = styled.form`
   font-size: 2rem;
+  color: #edeff1;
 `;
 
 const SearchBarInput = styled.input`
   border: none;
-  border-bottom: solid black 3px;
-  background-color: transparent;
+  border-bottom: solid #edeff1 3px;
+  background-color: #edeff1;
+  color: #000000;
   font-size: 2rem;
 `;
 
 const SearchBarButton = styled.button`
-  background-color: darkgray;
+  background-color: #edeff1;
   border: none;
   margin: 12px;
   padding: 12px;

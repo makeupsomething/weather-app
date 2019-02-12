@@ -12,7 +12,7 @@ const DayContainer = styled.li`
   height: 130px;
   font-size: 1.5rem;
   font-weight: 600;
-  background-color: ${props => (props.selected ? "#EBD3D1" : "#FAFDF4")};
+  background-color: ${props => (props.selected ? "#edeff1" : "#757575")};
   cursor: pointer;
   margin-top: 12px;
   border-radius: 12px;
@@ -41,13 +41,13 @@ const DayContainer = styled.li`
   }
 
   .max {
-    color: indianRed;
+    color: #db6665;
   }
 
   .min {
-    color: skyblue;
+    color: #7892e5;
   }
-
+  
   .description {
     font-size: 1rem;
   }
@@ -64,9 +64,10 @@ class Day extends React.Component {
         onClick={() => updateSelectedDay(date.day())}
       >
         <span className="item">{date.format("dddd")}</span>
+        <span className="item description">{date.format("DD/MM/YYYY")}</span>
         <span>
-          <span className="max item">{Math.round(maxMinTemps.max)}</span>/
-          <span className="min item">{Math.round(maxMinTemps.min)}</span>
+          <span className="max item">{Math.round(maxMinTemps.max)}&#8451;</span>/
+          <span className="min item">{Math.round(maxMinTemps.min)}&#8451;</span>
         </span>
         <i
           className={`wi wi-owm-${
