@@ -1,12 +1,11 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+import Results from "./Results"
 
 class Home extends React.Component {
   render() {
     return (
-      <div>
-        <SearchBar />
-      </div>
+        <Results city="dublin" />
     );
   }
 }
