@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import Day from "./Day";
@@ -9,7 +9,6 @@ import { getWeatherByCityName } from "../api";
 import { separateByDay } from "../utils";
 import { navigate } from "@reach/router";
 
-//styled-components
 const DayCards = styled.ul`
   display: flex;
   border: 0;
@@ -22,82 +21,56 @@ const DayCards = styled.ul`
   }
 `;
 
-// Results class
-// Contains all the component for the /results route
-// On mount and update get the 5 day weather forcast for the city
-// Redirect to 404 if the api returns an error
-class Results extends React.Component {
-  state = {
-    weatherDays: [],
-    currentDay: 1,
-    city: null,
-    country: null
-  };
+function Results(props) {
+  const [currentDay, setCurrentDay] = useState(dayjs().day())
+  const [weatherDays, setWeatherDays] = useState([])
+  const [city, setCity] = useState(null)
+  const [country, setCountry] = useState(null)
 
-  componentDidMount() {
-    const { city } = this.props;
-    let today = dayjs().day();
-    this.setState({ currentDay: today });
-    this.getWeather(city);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.city !== prevProps.city) {
-      const { city } = this.props;
-      let today = dayjs().day();
-      this.setState({ currentDay: today });
-      this.getWeather(city);
-    }
-  }
-
-  getWeather = city => {
+  const getWeather = city => {
     getWeatherByCityName(city)
       .then(weather => {
         const days = separateByDay(weather.list);
-        this.setState({
-          weatherDays: days,
-          city: weather.city,
-          country: weather.country
-        });
+        setWeatherDays(days)
+        setCity(weather.city)
+        setCountry(weather.country)
+        setCurrentDay(dayjs().day())
       })
       .catch(() => {
         navigate(`/404`);
       });
   };
 
-  updateSelectedDay = newDay => {
-    this.setState({
-      currentDay: newDay
-    });
-  };
-  render() {
-    const { weatherDays, currentDay, city, country } = this.state;
-    return (
-      <React.Fragment>
-        <SearchBar />
-        {city ? (
-          <MainDetails currentDay={currentDay} city={city} country={country} />
-        ) : (
-          <span>no city</span>
-        )}
-        {weatherDays.length > 0 ? (
-          <React.Fragment>
-            <FiveDayChart weatherData={weatherDays} currentDay={currentDay} />
-          </React.Fragment>
-        ) : null}
-        <DayCards>
-          {weatherDays.map((day, index) => (
-            <Day
-              key={`day-${index}`}
-              day={day}
-              currentDay={currentDay}
-              updateSelectedDay={this.updateSelectedDay}
-            />
-          ))}
-        </DayCards>
-      </React.Fragment>
-    );
-  }
+  useEffect(() => {
+    const { city } = props;
+    getWeather(city);
+  }, [props.city]); 
+
+  return (
+    <Fragment>
+      <SearchBar />
+      {city ? (
+        <MainDetails currentDay={currentDay} city={city} country={country} />
+      ) : (
+        <span>no city</span>
+      )}
+      {weatherDays.length > 0 ? (
+        <Fragment>
+          <FiveDayChart weatherData={weatherDays} currentDay={currentDay} />
+        </Fragment>
+      ) : null}
+      <DayCards>
+        {weatherDays.map((day, index) => (
+          <Day
+            key={`day-${index}`}
+            day={day}
+            currentDay={currentDay}
+            updateSelectedDay={setCurrentDay}
+          />
+        ))}
+      </DayCards>
+    </Fragment>
+  );
 }
 
 export default Results;

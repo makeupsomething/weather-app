@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import { getCurrentWeatherByCityName } from "../api";
@@ -50,62 +50,45 @@ const InnerContainer = styled.div`
   align-items: flex-start;
 `;
 
-// Main details is the large compoennt sshowing todays forecast for the city
+function MainDetails(props) {
+  const [currentWeather, setCurrentWeather] = useState(null)
+  const { city } = props;
+  const date = dayjs();
 
-class MainDetails extends React.Component {
-  state = {
-    currentWeather: null
-  };
-
-  componentDidMount() {
-    const { city } = this.props;
-    this.getWeather(city.name);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.city.name !== prevProps.city.name) {
-      const { city } = this.props;
-      this.getWeather(city.name);
-    }
-  }
-
-  getWeather = city => {
+  const getWeather = city => {
     getCurrentWeatherByCityName(city).then(weather => {
-      this.setState({
-        currentWeather: weather
-      });
+      setCurrentWeather(weather)
     });
   };
 
-  render() {
-    const { city } = this.props;
-    const { currentWeather } = this.state;
-    const date = dayjs();
-    return (
-      <DetailsContainer>
-        {currentWeather ? (
-          <React.Fragment>
-            <InnerContainer>
-              <span>
-                {city.name}, {city.country}
-              </span>
-              <span className="date">{date.format("dddd")}</span>
-              <span className="date">{date.format("DD/MM/YYYY")}</span>
-            </InnerContainer>
-            <InnerContainer>
-              <span>{Math.round(currentWeather.main.temp)}&#8451;</span>
-              <span className="location">
-                {currentWeather.weather[0].description}
-                <i
-                  className={`date wi wi-owm-${currentWeather.weather[0].id}`}
-                />
-              </span>
-            </InnerContainer>
-          </React.Fragment>
-        ) : null}
-      </DetailsContainer>
-    );
-  }
+  useEffect(() => {
+    getWeather(city.name);
+  }, [props.city]); 
+
+  return (
+    <DetailsContainer>
+      {currentWeather ? (
+        <Fragment>
+          <InnerContainer>
+            <span>
+              {city.name}, {city.country}
+            </span>
+            <span className="date">{date.format("dddd")}</span>
+            <span className="date">{date.format("DD/MM/YYYY")}</span>
+          </InnerContainer>
+          <InnerContainer>
+            <span>{Math.round(currentWeather.main.temp)}&#8451;</span>
+            <span className="location">
+              {currentWeather.weather[0].description}
+              <i
+                className={`date wi wi-owm-${currentWeather.weather[0].id}`}
+              />
+            </span>
+          </InnerContainer>
+        </Fragment>
+      ) : null}
+    </DetailsContainer>
+  );
 }
 
 export default MainDetails;
