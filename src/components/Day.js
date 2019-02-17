@@ -51,37 +51,33 @@ const DayContainer = styled.li`
   }
 `;
 
-// The card components
-// Show the day, date and higl/low values for each day
-// Clicking anywhere on the card triggers the chart to update with the tempature values for the selected day
-class Day extends React.Component {
-  render() {
-    const { day, currentDay, updateSelectedDay } = this.props;
-    const maxMinTemps = getDailyMaxAndMin(day);
-    const date = dayjs(day[0].dt_txt);
-    return (
-      <DayContainer
-        selected={date.day() === currentDay}
-        onClick={() => updateSelectedDay(date.day())}
-      >
-        <span className="item">{date.format("dddd")}</span>
-        <span className="item description">{date.format("DD/MM/YYYY")}</span>
-        <span>
-          <span className="max item">{Math.round(maxMinTemps.max)}&#8451;</span>
-          /
-          <span className="min item">{Math.round(maxMinTemps.min)}&#8451;</span>
-        </span>
-        <i
-          className={`wi wi-owm-${
-            day[Math.round((day.length - 1) / 2)].weather[0].id
-          }`}
-        />
-        <span className="description item">{`${
-          day[Math.round((day.length - 1) / 2)].weather[0].description
-        }`}</span>
-      </DayContainer>
-    );
-  }
+function Day(props) {
+  const { day, currentDay, updateSelectedDay } = props;
+  const maxMinTemps = getDailyMaxAndMin(day);
+  const date = dayjs(day[0].dt_txt);
+
+  return (
+    <DayContainer
+      selected={date.day() === currentDay}
+      onClick={() => updateSelectedDay(date.day())}
+    >
+      <span className="item">{date.format("dddd")}</span>
+      <span className="item description">{date.format("DD/MM/YYYY")}</span>
+      <span>
+        <span className="max item">{Math.round(maxMinTemps.max)}&#8451;</span>
+        /
+        <span className="min item">{Math.round(maxMinTemps.min)}&#8451;</span>
+      </span>
+      <i
+        className={`wi wi-owm-${
+          day[Math.round((day.length - 1) / 2)].weather[0].id
+        }`}
+      />
+      <span className="description item">{`${
+        day[Math.round((day.length - 1) / 2)].weather[0].description
+      }`}</span>
+    </DayContainer>
+  );
 }
 
 export default Day;

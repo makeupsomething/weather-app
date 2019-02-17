@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, Fragment } from "react";
 import styled from "styled-components";
 import { navigate } from "@reach/router";
 
-//styled-components
 const SearchBarForm = styled.form`
   font-size: 2rem;
   color: #edeff1;
@@ -24,60 +23,39 @@ const SearchBarButton = styled.button`
   cursor: pointer;
 `;
 
-const ErrorMessage = styled.span`
-  color: red;
-  font-size: 1.5rem;
-`;
 
-// Search bar
-// Take the users input and redirect to correct url if not empty
-class SearchBar extends React.Component {
-  state = {
-    location: "",
-    isSaving: false,
-    error: false
-  };
+function SearchBar() {
+  const [location, setLocation] = useState("");
+  const [isSaving, setSaving] = useState(false);
 
-  handleSubmit = event => {
+  function handleSubmit(event) {
     event.preventDefault();
+    setSaving(true)
     const { city } = event.target.elements;
     if (city.value) {
-      this.setState({ isSaving: true });
+      setSaving(false)
       navigate(`/results/${city.value}`);
-    } else {
-      this.setState({ error: "City cannot be empty" });
     }
   };
 
-  handleLocationChange = event => {
-    this.setState({
-      location: String(event.target.value).toLowerCase()
-    });
-  };
-
-  render() {
-    const { error } = this.state;
-
-    return (
-      <React.Fragment>
-        <SearchBarForm onSubmit={this.handleSubmit}>
-          <label htmlFor="city">Check the weather in: </label>
-          <SearchBarInput
-            required
-            onChange={this.handleLocationChange}
-            type="text"
-            id="city"
-            placeholder="Dublin"
-            value={this.state.location}
-          />
-          <SearchBarButton type="submit" disabled={this.state.isSaving}>
-            submit
-          </SearchBarButton>
-        </SearchBarForm>
-        {error ? <ErrorMessage>{error}</ErrorMessage> : null}
-      </React.Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      <SearchBarForm onSubmit={handleSubmit}>
+        <label htmlFor="city">Check the weather in: </label>
+        <SearchBarInput
+          required
+          onChange={e => setLocation(e.target.value)}
+          type="text"
+          id="city"
+          placeholder="Dublin"
+          value={location}
+        />
+        <SearchBarButton type="submit" disabled={isSaving}>
+          submit
+        </SearchBarButton>
+      </SearchBarForm>
+    </Fragment>
+  );
 }
 
 export default SearchBar;
