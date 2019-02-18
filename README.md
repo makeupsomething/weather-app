@@ -34,7 +34,8 @@ To get up an running quickly I used `create-react-app` to bootstrap the project.
 
 I think in an effort to pack more information into the page the app does not look that great on all screen sizes, especially at the larger and smaller end of the scales. There is a sweet spot in the middle though where I think it looks ok.
 
-In an effort to keep things more simple I intended to avoid newer react features such as hooks. I also did not want to use a state library like redux as this app is pretty small.
+~~In an effort to keep things more simple I intended to avoid newer react features such as hooks. I also did not want to use a state library like redux as this app is pretty small.~~
+Edit: I added hooks!
 
 The icons and weather description in the cards are not super accurate. I take the middle value for each day forecast and display that. So it is not always representative of what that days weather will be.
 
@@ -42,7 +43,8 @@ I just have a basic 404 page that I redirect to for any errors or route mismatch
 
 ## If Only I had more time
 
-I should have used react context from the start for sending state to children. I think right now it is at the limit of maintainability for me. If I used react context the structure would be much more simple but I did not have have enough time to refactor this into the app.
+~~I should have used react context from the start for sending state to children. I think right now it is at the limit of maintainability for me. If I used react context the structure would be much more simple but I did not have have enough time to refactor this into the app.~~
+Edit: By updating to use hooks the app becomes more easy to reason about 
 
 If I had more time I would have liked for the home page to get the weather at the users location. I began this this process in [this branch](https://github.com/makeupsomething/weather-app/tree/feature/get-weather-from-coords) but was not able to fully implement it. I was planning to use the browsers build in geolocation API and get the users latitude and longitude from that.
 
